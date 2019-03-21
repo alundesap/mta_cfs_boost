@@ -1,0 +1,4 @@
+ID: mta_cfs_boost
+_schema-version: '2.1'
+description: Multi-Target Application for Cloud Foundry Summit Boost Demo
+version: 0.0.1
