@@ -16,3 +16,15 @@ version: 0.0.1
 #      properties:
 #         url: ${default-url}
 
+
+modules:
+ 
+
+resources:
+ - name: uaa_mta_cfs_boost
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
+
