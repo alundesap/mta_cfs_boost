@@ -3,16 +3,16 @@ _schema-version: '2.1'
 description: Multi-Target Application for Cloud Foundry Summit Boost Demo
 version: 0.0.1
 
-modules:
- - name: web
-   type: html5
-   path: web
+#modules:
+# - name: web
+#   type: html5
+#   path: web
 
- - name: nodejs
-   type: nodejs
-   path: nodejs
-   provides:
-    - name: nodejs_api
-      properties:
-         url: ${default-url}
+# - name: nodejs
+#  type: nodejs
+#   path: nodejs
+#   provides:
+#    - name: nodejs_api
+#      properties:
+#         url: ${default-url}
 
