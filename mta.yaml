@@ -4,19 +4,46 @@ description: Multi-Target Application for Cloud Foundry Summit Boost Demo
 version: 0.0.1
 
 modules:
- - name: web
-   type: html5
-   path: web
-   parameters:
-     app-name: boost-web
-     memory: 256M
-     disk-quota: 256M
 
-# - name: nodejs
-#  type: nodejs
-#   path: nodejs
-#   provides:
-#    - name: nodejs_api
-#      properties:
-#         url: ${default-url}
+  - name: python
+    type: python
+    path: python
+    parameters:
+      app-name: boost-python
+      memory: 512M
+      disk-quota: 256M
+      host: cfs-python
+    provides:
+      - name: python_api
+        properties:
+          url: '${default-url}'
+
+  - name: nodejs
+    type: nodejs
+    path: nodejs
+    parameters:
+      app-name: boost-nodejs
+      memory: 512M
+      disk-quota: 256M
+      host: cfs-nodejs
+    provides:
+     - name: nodejs_api
+       properties:
+          url: ${default-url}
+
+  - name: web
+    type: html5
+    path: web
+    parameters:
+      app-name: boost-web
+      memory: 512M
+      disk-quota: 256M
+      host: cfs-web
+    requires:
+      - name: python_api
+        group: destinations
+        properties:
+          name: python_be
+          url: '~{url}'
+          forwardAuthToken: true
 

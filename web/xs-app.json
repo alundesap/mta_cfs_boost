@@ -1,5 +1,23 @@
 {
-	"welcomeFile": "index.html",
-	"authenticationMethod": "none",
-	"routes": []
+  "welcomeFile": "index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "(auth_python/)(.*)",
+      "destination": "python_be",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "(python/)(.*)",
+      "destination": "python_be",
+      "csrfProtection": true,
+      "authenticationType": "none"
+    },
+    {
+      "localDir": "resources",
+      "source": "^/(.*)",
+      "authenticationType": "none"
+    }
+  ]
 }
