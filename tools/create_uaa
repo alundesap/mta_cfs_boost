@@ -1,0 +1,34 @@
+#!/bin/bash
+echo ""
+xsorcf=$1
+org=$2
+space=$3
+plan=""
+config=""
+if [ "$#" -eq 3 ]; then
+  if [ $1 = "xs" ]; then
+    plan="default"
+    echo "XS cool."
+  else
+    if [ $1 = "cf" ]; then
+      plan="application"
+      config=" -c '{\"xsappname\":\"boost-web\",\"tenant-mode\":\"dedicated\"}'"
+      echo "CF cool."
+    else
+      echo "Not XS or CF, try again."
+      exit 1
+    fi
+  fi
+  echo $1 Create of XSUAA in org: $2 space: $3 Starting
+  echo ""
+  $1 t -o $2 -s $3
+  cmd=""$1" create-service xsuaa "$plan" boost-cfs-uaa"$config
+  echo "Running this command."
+  echo $cmd 
+  eval $cmd 
+else
+    echo "Usage ./create_uaa xs[cf] org space"
+    exit 1
+fi
+echo ""
+echo $1 Create of XSUAA in org: $2 space: $3 Finished

@@ -17,6 +17,8 @@ modules:
       - name: python_api
         properties:
           url: '${default-url}'
+    requires:
+     - name: hdi_db
 
   - name: nodejs
     type: nodejs
@@ -30,6 +32,8 @@ modules:
      - name: nodejs_api
        properties:
           url: ${default-url}
+    requires:
+     - name: hdi_db
 
   - name: web
     type: html5
@@ -53,3 +57,16 @@ modules:
           url: '~{url}'
           forwardAuthToken: true
 
+
+  - name: db
+    type: hdb
+    path: db
+    requires:
+     - name: hdi_db
+
+
+resources:
+ - name: hdi_db
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
