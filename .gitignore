@@ -12,3 +12,7 @@ changes_preview.js
 AppVariant_index.html
 APIExternalProducer.js
 .*/APIExternalProducer.js
+target/
+.mta/
+node_modules/
+package-lock.json
