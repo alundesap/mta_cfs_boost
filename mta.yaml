@@ -11,7 +11,7 @@ modules:
     parameters:
       app-name: boost-python
       memory: 512M
-      disk-quota: 256M
+      disk-quota: 512M
       host: cfs-python
     provides:
       - name: python_api
@@ -24,7 +24,7 @@ modules:
     parameters:
       app-name: boost-nodejs
       memory: 512M
-      disk-quota: 256M
+      disk-quota: 512M
       host: cfs-nodejs
     provides:
      - name: nodejs_api
@@ -37,7 +37,7 @@ modules:
     parameters:
       app-name: boost-web
       memory: 512M
-      disk-quota: 256M
+      disk-quota: 512M
       host: cfs-web
     requires:
       - name: python_api

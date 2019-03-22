@@ -1,8 +1,7 @@
 {
   "dependencies": {},
   "description": "NodeJS module",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "files": [],
   "main": "server.js",
   "name": "nodejs",
