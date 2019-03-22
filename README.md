@@ -10,7 +10,7 @@ pip download -d vendor -r requirements.txt --find-links ../../sap_dependencies
 ```
 
 ```
-tools/create_uaa A-Team_cfs dev
+tools/create_uaa cf A-Team_cfs dev
 
 cf t -o A-Team_cfs -s dev
 mkdir -p target
