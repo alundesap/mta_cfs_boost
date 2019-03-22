@@ -67,6 +67,8 @@ modules:
 
 resources:
  - name: hdi_db
+   parameters:
+      service-name: boost-cfs-hdb
    properties:
       hdi-container-name: ${service-name}
    type: com.sap.xs.hdi-container
