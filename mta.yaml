@@ -18,7 +18,8 @@ modules:
         properties:
           url: '${default-url}'
     requires:
-     - name: hdi_db
+     - name: mta_cfs_boost_uaa
+     - name: mta_cfs_boost_db
 
   - name: nodejs
     type: nodejs
@@ -33,7 +34,8 @@ modules:
        properties:
           url: ${default-url}
     requires:
-     - name: hdi_db
+     - name: mta_cfs_boost_uaa
+     - name: mta_cfs_boost_db
 
   - name: web
     type: html5
@@ -43,7 +45,12 @@ modules:
       memory: 512M
       disk-quota: 512M
       host: cfs-web
+    properties:
+      TENANT_HOST_PATTERN: '^(.*)-web.(.*)'
+#https://regex101.com/
+#cfs-web.cfapps.us10.hana.ondemand.com
     requires:
+      - name: mta_cfs_boost_uaa
       - name: python_api
         group: destinations
         properties:
@@ -62,13 +69,20 @@ modules:
     type: hdb
     path: db
     requires:
-     - name: hdi_db
+     - name: mta_cfs_boost_db
 
 
 resources:
- - name: hdi_db
+ - name: mta_cfs_boost_db
    parameters:
       service-name: boost-cfs-hdb
    properties:
       hdi-container-name: ${service-name}
    type: com.sap.xs.hdi-container
+
+ - name: mta_cfs_boost_uaa
+ #  parameters:
+ #     path: ./xs-security.json
+ #     service-plan: default
+   type: com.sap.xs.uaa
+

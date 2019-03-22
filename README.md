@@ -11,6 +11,7 @@ pip download -d vendor -r requirements.txt --find-links ../../sap_dependencies
 
 ```
 tools/create_uaa cf A-Team_cfs dev
+cf create-service hana hdi-shared boost-cfs-hdb -c '{"database_id":"197ee647-a43c-49f5-8ea6-5561a802ed6f"}'
 
 cf t -o A-Team_cfs -s dev
 mkdir -p target
