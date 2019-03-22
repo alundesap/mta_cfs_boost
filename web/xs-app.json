@@ -15,6 +15,12 @@
       "authenticationType": "none"
     },
     {
+      "source": "(nodejs/)(.*)",
+      "destination": "nodejs_be",
+      "csrfProtection": true,
+      "authenticationType": "none"
+    },
+    {
       "localDir": "resources",
       "source": "^/(.*)",
       "authenticationType": "none"

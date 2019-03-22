@@ -46,4 +46,10 @@ modules:
           name: python_be
           url: '~{url}'
           forwardAuthToken: true
+      - name: nodejs_api
+        group: destinations
+        properties:
+          name: nodejs_be
+          url: '~{url}'
+          forwardAuthToken: true
 
