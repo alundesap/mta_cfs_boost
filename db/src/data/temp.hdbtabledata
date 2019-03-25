@@ -3,10 +3,10 @@
 	"imports":
 	[
         {
-            "target_table": "data::sensors.temp",
+            "target_table": "sensors.temp",
             "source_data": {
                 "data_type": "CSV",
-                "file_name": "data::temp.csv",
+                "file_name": "temp.csv",
                 "has_header": true
             },
             "import_settings": {

@@ -1,5 +1,5 @@
-SEQUENCE "data::tempId"
+SEQUENCE "tempId"
 INCREMENT BY 1
 START WITH 4
 RESET BY
-SELECT IFNULL(MAX("tempId"), 0) + 1 FROM "data::sensors.temp"
+SELECT IFNULL(MAX("tempId"), 0) + 1 FROM "sensors.temp"
