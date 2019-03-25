@@ -1,0 +1,7 @@
+#!/bin/bash
+org="HANAExpress"
+tenant="HXE"
+host="hxehost"
+port="39015"
+inst="00"
+xsa_user=""
