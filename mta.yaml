@@ -68,6 +68,10 @@ modules:
   - name: db
     type: hdb
     path: db
+    parameters:
+      app-name: boost-db
+      memory: 512M
+      disk-quota: 512M
     requires:
      - name: mta_cfs_boost_db
 

@@ -63,7 +63,7 @@ if [ "$#" -eq 3 ]; then
 
   app=$proj'-db'
 
-  cmd=$xsorcf' push '$app' -p '$path'/ -m 256M -k 256M --no-route --no-start'
+  cmd=$xsorcf' push '$app' -p '$path'/ -m 256M -k 256M --no-route --no-start -u none'
   echo $cmd
   if [ $do_run -eq 1 ]; then eval $cmd; fi
   RESULT=$?
