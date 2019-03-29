@@ -85,7 +85,8 @@ resources:
    type: com.sap.xs.hdi-container
 
  - name: mta_cfs_boost_uaa
- #  parameters:
+   parameters:
+      service-name: boost-cfs-uaa
  #     path: ./xs-security.json
  #     service-plan: default
    type: com.sap.xs.uaa
