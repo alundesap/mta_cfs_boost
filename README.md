@@ -44,8 +44,7 @@ cd app
 Edit locally, then copy files to deployed runtime container.
 ```
 cf app boost-python --guid
-cf ssh-code
-ssh -p 2222 cf:8aa9f796-e53e-4564-b4e3-597e82d7c2e7/0@ssh.cf.us10.hana.ondemand.com
+cf ssh-code ; ssh -p 2222 cf:ece6713d-3637-4709-a92a-2f3894a769a1/0@ssh.cf.us10.hana.ondemand.com
 ```
 
 
