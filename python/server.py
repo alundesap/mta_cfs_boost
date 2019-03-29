@@ -1,5 +1,5 @@
 """
-XSA Python buildpack app example
+CF/XSA Python buildpack app example
 Author: Andrew Lunde
 """
 from flask import Flask
@@ -66,9 +66,11 @@ def attach(port, host):
 def hello_world():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/env">/env</a><br />\n'
+    output += '<a href="/python/links">/python/links</a><br />\n'
     output += '<a href="/python/test">/python/test</a><br />\n'
     output += '<a href="/python/db_only">/python/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
+
     return output
     
 # Satisfy browser requests for favicon.ico so that don't return 404
@@ -96,6 +98,21 @@ def python_links():
     output += '<a href="/python/test">/python/test</a><br />\n'
     output += '<a href="/python/db_only">/python/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
+
+    output += '<br />\n'
+    output += 'In a console on your workstation running eclipse, establish a reverse tunnel so that the app can reach back to the debug server.<br />\n'
+    output += '<pre>cf ssh-code ; ssh -nNT -p 2222 cf:ece6713d-3637-4709-a92a-2f3894a769a1/0@ssh.cf.us10.hana.ondemand.com -R 5678:localhost:5678</pre><br />\n'
+    output += 'In a Eclipse, start the Python Debugging Server.<br />\n'
+    output += '<pre>Pydev->Start Debug Server</pre><br />\n'
+
+    output += '<br />\n'
+
+    output += '<ol>\n'
+    output += '<li><a href="/python/set_env?PATHS_FROM_ECLIPSE_TO_PYTHON=[[%22/Users/i830671/git/mta_cfs_boost/python%22,%22/home/vcap/app%22]]">/python/set_env</a></li>\n'
+    output += '<li><a href="/python/env">/python/env</a> + test breakpoints</li>\n'
+    output += '<li><a href="/python/attach">/python/attach</a></li>\n'
+    output += '</ol>\n'
+
     return output
 
 # If there is a request for a python/test, return Testing message and module's instance number
@@ -118,19 +135,23 @@ def unauth_post():
 
 @app.route('/python/set_env')
 def set_pyenv():
-    output = '\n Set Environment variable... \n'
+    output = 'Set Environment variable... <br />\n'
     if request.args.get('PATHS_FROM_ECLIPSE_TO_PYTHON'):
         output += request.args.get('PATHS_FROM_ECLIPSE_TO_PYTHON')
         os.environ["PATHS_FROM_ECLIPSE_TO_PYTHON"] = request.args.get('PATHS_FROM_ECLIPSE_TO_PYTHON')
-        output += '\n'
-        output += 'Eclipse paths set for debugging.\n'
-        output += '\n'
+        output += '<br />\n'
+        output += 'Eclipse paths set for debugging.<br />\n'
+        output += '<br />\n'
+        output += 'Check that this process has the correct environment.<br />\n'
+        output += '<a href="/python/env">/python/env</a><br />\n'
+        output += '<br />\n'
     output += '\n'
-    return Response(output, mimetype='text/plain' , status=200,)
+    #return Response(output, mimetype='text/plain' , status=200,)
+    return output
 
 @app.route('/python/env')
 def dump_pyenv():
-    output = '\n Key Environment variables... \n'
+    output = '<pre>Key Environment variables... \n'
     output += 'PYTHONHOME: ' + str(os.getenv("PYTHONHOME", 0)) + '\n'
     output += 'PYTHONPATH: ' + str(os.getenv("PYTHONPATH", 0)) + '\n'
     output += 'PATHS_FROM_ECLIPSE_TO_PYTHON: ' + str(os.getenv("PATHS_FROM_ECLIPSE_TO_PYTHON", 0)) + '\n'
@@ -138,21 +159,26 @@ def dump_pyenv():
     if jsonok:
         output += "JSON is OK" + '\n'
         tuples = [tuple(x) for x in jsonok]
+        output += '<a href="/python/attach">/python/attach</a>\n'
     else:
         output += "JSON is NOT OK" + '\n'
+        output += '<a href="/python/links">/python/links</a>\n'
     output += 'VCAP_SERVICES: ' + str(os.getenv("VCAP_SERVICES", 0)) + '\n'
     output += 'host: ' + hana.credentials['host'] + '\n'
     output += 'port: ' + hana.credentials['port'] + '\n'
     output += 'user: ' + hana.credentials['user'] + '\n'
     output += 'pass: ' + hana.credentials['password'] + '\n'
-    output += '\n'
+    output += '</pre>\n'
     return output
 
 @app.route('/python/attach')
 def do_attach():
-    output = '\n Attaching to debugger... \n'
+    output = '<pre>\n Attaching to debugger... \n'
+    output = '\n Double check that you Eclipse Debug Server is listening on port 5678 and the tunnel is connected. \n'
     attach(5678,"localhost")
     output += '\n Set some breakpoints...\n'
+    output += '<a href="/python/env">/python/env</a> + test breakpoints<br />\n'
+    output += '\n</pre>\n'
     return output
 
 # If there is a request for a python/test2, return Testing message and then check JWT and connect to the data service and retrieve some data

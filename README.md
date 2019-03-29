@@ -45,6 +45,21 @@ Edit locally, then copy files to deployed runtime container.
 ```
 cf app boost-python --guid
 cf ssh-code ; ssh -p 2222 cf:ece6713d-3637-4709-a92a-2f3894a769a1/0@ssh.cf.us10.hana.ondemand.com
+mkdir -p tmp
+cf app boost-python --guid > tmp/guid
+
+cf logs boost-python
+
+cd python
+vi server.py
+cf ssh-code > ../tmp/code ; ../tools/cp2cf server.py
+cd ..
+```
+
+```
+https://cfs-python.cfapps.us10.hana.ondemand.com/python/set_env?PATHS_FROM_ECLIPSE_TO_PYTHON=[["/Users/i830671/git/mta_cfs_boost/python","/home/vcap/app"]]
+https://cfs-python.cfapps.us10.hana.ondemand.com/python/env
+cf ssh-code ; ssh -nNT -p 2222 cf:ece6713d-3637-4709-a92a-2f3894a769a1/0@ssh.cf.us10.hana.ondemand.com -R 5678:localhost:5678
 ```
 
 
