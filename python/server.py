@@ -25,6 +25,7 @@ from cfenv import AppEnv
 #https://help.sap.com/viewer/0eec0d68141541d1b07893a39944924e/2.0.03/en-US/d12c86af7cb442d1b9f8520e2aba7758.html
 from hdbcli import dbapi
 
+import platform
 
 app = Flask(__name__)
 env = AppEnv()
@@ -40,6 +41,7 @@ hana = env.get_service(label='hana')
 
 def attach(port, host):
     try:
+        print("pydevd")
         import pydevd
         pydevd.stoptrace() #I.e.: disconnect if already connected
         # pydevd.DebugInfoHolder.DEBUG_RECORD_SOCKET_READS = True
@@ -152,6 +154,8 @@ def set_pyenv():
 @app.route('/python/env')
 def dump_pyenv():
     output = '<pre>Key Environment variables... \n'
+    print(platform.python_version())
+    output += 'PYTHONVERSION: ' + platform.python_version() + '\n'
     output += 'PYTHONHOME: ' + str(os.getenv("PYTHONHOME", 0)) + '\n'
     output += 'PYTHONPATH: ' + str(os.getenv("PYTHONPATH", 0)) + '\n'
     output += 'PATHS_FROM_ECLIPSE_TO_PYTHON: ' + str(os.getenv("PATHS_FROM_ECLIPSE_TO_PYTHON", 0)) + '\n'
@@ -394,6 +398,7 @@ def auth_db_valid():
     return output
 
 if __name__ == '__main__':
+    print(platform.python_version())
     # Run the app, listening on all IPs with our chosen port number
     # Use this for production 
     #app.run(host='0.0.0.0', port=port)
