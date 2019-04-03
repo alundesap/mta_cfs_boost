@@ -35,7 +35,7 @@ cf env boost-python
 
 Run As -> Python Run
 ```
-http://0.0.0.0:8089/python/links
+[http://0.0.0.0:8089/python/links](http://0.0.0.0:8089/python/links)
 ```
 
 ## Piecemeal Deployments(Pushing)
