@@ -25,6 +25,8 @@ mkdir -p target
 tools/set_nodejs_env
 tools/timed "mta --build-target CF --mtar target/mta_cfs_boost-CF.mtar build ; cf deploy target/mta_cfs_boost-CF.mtar"
 ```
+*Elapsed: 460 seconds
+
 [https://cfs-web.cfapps.us10.hana.ondemand.com/python/links](https://cfs-web.cfapps.us10.hana.ondemand.com/python/links)
 
 
