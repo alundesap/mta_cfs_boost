@@ -40,11 +40,12 @@ cf env boost-python
 Run As -> Python Run
 [http://0.0.0.0:8089/python/links](http://0.0.0.0:8089/python/links)
 
-## Piecemeal Deployments(Pushing)
+## Piecemeal Deployments(Pushing) From Docker(Linux)
 
 ```
-tools/timed "cf push boost-python -m 512M -k 512M -n cfs-python -p python/"
+tools/timed "git pull ; cf push boost-python -m 512M -k 512M -n cfs-python -p python/"
 ```
+*Elapsed: 81 seconds
 
 ## Editing/Testing after Deploy
 
