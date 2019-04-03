@@ -26,9 +26,26 @@ tools/set_nodejs_env
 tools/timed "mta --build-target CF --mtar target/mta_cfs_boost-CF.mtar build ; cf deploy target/mta_cfs_boost-CF.mtar"
 ```
 
+## Localizing your Dev Environment
+
+Define a Run Configuration and set PORT and VCAP_SERVICES
+```
+cf env boost-python
+```
+
+Run As -> Python Run
+```
+http://0.0.0.0:8089/python/links
+```
+
+## Piecemeal Deployments(Pushing)
+
 ```
 tools/timed "cf push boost-python -m 512M -k 512M -n cfs-python -p python/"
 ```
+
+## Editing/Testing after Deploy
+
 
 Edit in place (deployed)
 ```
@@ -39,6 +56,7 @@ cd app
 ```
 
 Edit locally, then copy files to deployed runtime container.
+Adjust the guid(ece67...69a1) and landscape(us10).
 ```
 cf app boost-python --guid
 cf ssh-code ; ssh -p 2222 cf:ece6713d-3637-4709-a92a-2f3894a769a1/0@ssh.cf.us10.hana.ondemand.com
@@ -52,6 +70,10 @@ vi server.py
 cf ssh-code > ../tmp/code ; ../tools/cp2cf server.py
 cd ..
 ```
+
+## Tunneling Home
+
+
 On your local workstation, listen to 5678
 ```
 nc -l 5678
