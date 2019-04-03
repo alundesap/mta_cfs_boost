@@ -13,7 +13,7 @@ wget -c http://thedrop.sap-a-team.com/files/XS_PYTHON00_1-70003433.ZIP
 unzip XS_PYTHON00_1-70003433.ZIP -d sap_dependencies
 cd mta_cfs_boost/python
 mkdir -p vendor
-pip download -d vendor -r requirements.txt --find-links ../../sap_dependencies
+pip3 download -d vendor -r requirements.txt --find-links ../../sap_dependencies
 cd ..
 ```
 ## Root cause of the issue
