@@ -55,6 +55,15 @@ vi server.py
 cf ssh-code > ../tmp/code ; ../tools/cp2cf server.py
 cd ..
 ```
+On your local workstation, listen to 5678
+```
+nc -l 5678
+```
+CF SSH into your app container and connect as a client.
+```
+nc localhost 5678
+```
+
 
 ```
 https://cfs-python.cfapps.us10.hana.ondemand.com/python/set_env?PATHS_FROM_ECLIPSE_TO_PYTHON=[["/Users/i830671/git/mta_cfs_boost/python","/home/vcap/app"]]
@@ -62,6 +71,7 @@ https://cfs-python.cfapps.us10.hana.ondemand.com/python/env
 cf ssh-code ; ssh -nNT -p 2222 cf:ece6713d-3637-4709-a92a-2f3894a769a1/0@ssh.cf.us10.hana.ondemand.com -R 5678:localhost:5678
 ```
 
+Set breakpoint at line 158
 
 ```
 tools/timed "cf undeploy mta_cfs_boost --delete-services -f"

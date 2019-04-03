@@ -41,7 +41,7 @@ hana = env.get_service(label='hana')
 
 def attach(port, host):
     try:
-        print("pydevd")
+        print("pydevd attached.")
         import pydevd
         pydevd.stoptrace() #I.e.: disconnect if already connected
         # pydevd.DebugInfoHolder.DEBUG_RECORD_SOCKET_READS = True
@@ -53,8 +53,8 @@ def attach(port, host):
             stdoutToServer=True,
             stderrToServer=True,
             overwrite_prev_trace=True,
-            suspend=False,
-            trace_only_current_thread=False,
+            suspend=True,
+            trace_only_current_thread=True,
             patch_multiprocessing=False,
         )
     except:
@@ -154,7 +154,7 @@ def set_pyenv():
 @app.route('/python/env')
 def dump_pyenv():
     output = '<pre>Key Environment variables... \n'
-    print(platform.python_version())
+    print('env with ' + platform.python_version())
     output += 'PYTHONVERSION: ' + platform.python_version() + '\n'
     output += 'PYTHONHOME: ' + str(os.getenv("PYTHONHOME", 0)) + '\n'
     output += 'PYTHONPATH: ' + str(os.getenv("PYTHONPATH", 0)) + '\n'
