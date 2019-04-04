@@ -159,7 +159,7 @@ def dump_pyenv():
     output += 'PATHS_FROM_ECLIPSE_TO_PYTHON: ' + str(os.getenv("PATHS_FROM_ECLIPSE_TO_PYTHON", 0)) + '\n'
     output += '\n'
     intnum = 5
-    output += 'intnum = ' + intnum + '\n'
+    output += 'intnum = ' + str(intnum) + '\n'
     output += '\n'
     jsonok = json.loads(os.environ.get('PATHS_FROM_ECLIPSE_TO_PYTHON', '[]'))
     if jsonok:
