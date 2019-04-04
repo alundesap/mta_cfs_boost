@@ -53,8 +53,8 @@ def attach(port, host):
             stdoutToServer=True,
             stderrToServer=True,
             overwrite_prev_trace=True,
-            suspend=True,
-            trace_only_current_thread=True,
+            suspend=False,
+            trace_only_current_thread=False,
             patch_multiprocessing=False,
         )
     except:
@@ -107,8 +107,6 @@ def python_links():
     output += 'In a Eclipse, start the Python Debugging Server.<br />\n'
     output += '<pre>Pydev->Start Debug Server</pre><br />\n'
 
-    output += '<br />\n'
-
     output += '<ol>\n'
     output += '<li><a href="/python/set_env?PATHS_FROM_ECLIPSE_TO_PYTHON=[[%22/Users/i830671/git/mta_cfs_boost/python%22,%22/home/vcap/app%22]]">/python/set_env</a></li>\n'
     output += '<li><a href="/python/env">/python/env</a> + test breakpoints</li>\n'
@@ -120,7 +118,7 @@ def python_links():
 # If there is a request for a python/test, return Testing message and module's instance number
 @app.route('/python/test')
 def unauth_test():
-    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+    return 'Python UnAuthorized Test, Hey! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
 
 @app.route('/python/post', methods=['POST'])
 def unauth_post():
