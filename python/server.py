@@ -157,6 +157,10 @@ def dump_pyenv():
     output += 'PYTHONHOME: ' + str(os.getenv("PYTHONHOME", 0)) + '\n'
     output += 'PYTHONPATH: ' + str(os.getenv("PYTHONPATH", 0)) + '\n'
     output += 'PATHS_FROM_ECLIPSE_TO_PYTHON: ' + str(os.getenv("PATHS_FROM_ECLIPSE_TO_PYTHON", 0)) + '\n'
+    output += '\n'
+    intnum = 5
+    output += 'intnum = ' + intnum + '\n'
+    output += '\n'
     jsonok = json.loads(os.environ.get('PATHS_FROM_ECLIPSE_TO_PYTHON', '[]'))
     if jsonok:
         output += "JSON is OK" + '\n'
@@ -165,6 +169,7 @@ def dump_pyenv():
     else:
         output += "JSON is NOT OK" + '\n'
         output += '<a href="/python/links">/python/links</a>\n'
+        output += '<a href="/python/set_env?PATHS_FROM_ECLIPSE_TO_PYTHON=[[%22/Users/i830671/git/mta_cfs_boost/python%22,%22/home/vcap/app%22]]">/python/set_env</a>\n'
     output += 'VCAP_SERVICES: ' + str(os.getenv("VCAP_SERVICES", 0)) + '\n'
     output += 'host: ' + hana.credentials['host'] + '\n'
     output += 'port: ' + hana.credentials['port'] + '\n'
