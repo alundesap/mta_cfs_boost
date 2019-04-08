@@ -19,3 +19,7 @@ package-lock.json
 vendor/
 tmp/
 python/__pycache__/
+web/.che/project.json
+
+AppVariantPreviewPayload.zip
+mergedManifestDescriptor.json
