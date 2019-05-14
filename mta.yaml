@@ -76,6 +76,9 @@ modules:
      - name: mta_cfs_boost_db
 
 
+
+  
+
 resources:
  - name: mta_cfs_boost_db
    parameters:
